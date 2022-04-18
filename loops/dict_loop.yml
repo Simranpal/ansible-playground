@@ -1,0 +1,14 @@
+---
+- name: Loop over list of dictionaries 
+  hosts: all
+  tasks:
+    - name: User exist and are in the correct groups 
+      user:
+        name: "{{ item.name }}"
+        state: present
+        group: "{{ item.group }}"
+      loop:
+        - name: jane
+          group: wheels
+        - name: joe
+          group: root
